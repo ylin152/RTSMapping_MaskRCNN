@@ -1,6 +1,5 @@
 import os,sys
 import argparse
-from unicodedata import name
 import imgaug as ia
 from imgaug import augmenters as iaa
 from imgaug.augmentables.segmaps import SegmentationMapsOnImage
@@ -243,15 +242,6 @@ def augment_seq(img_array, mask_array):
         )
     ],random_order=True
     )
-
-    # change the activated augmenters for mask
-    # def activator_mask(image, augmenter, parents, default):
-    #     if augmenter.name in ['Blur', 'Noise', 'Brightness','Contrast']:
-    #         return False
-    #     else:
-    #         # default value for all other augmenters
-    #         return default
-    # hooks_mask = ia.HooksImages(activator=activator_mask)
 
     img_aug, mask_aug = seq(image=img_array, segmentation_maps=segmap)
 
